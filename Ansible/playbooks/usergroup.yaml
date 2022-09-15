@@ -1,0 +1,95 @@
+---
+- hosts: unix
+  remote_user: root
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  connection: ssh
+  tasks:
+   - name: Add group "admin" to remote server
+     group:
+       name: admin
+       gid: 2010
+       state: present
+
+   - name: Add group "users" to remote server
+     group:
+       name: users
+       gid: 2011
+       state: present
+
+   - name: Add group "office" to remote server
+     group:
+       name: office
+       gid: 2012
+       state: present
+
+   - name: Add user "sysadmin" to remote server
+     user:
+       name: sysadmin
+       comment: "Privileged User"
+       uid: 2001
+       group: admin
+       groups: users,admin
+       append: yes
+       shell: /bin/bash
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa
+
+   - name: Add user "ameen" to remote server
+     user:
+       name: ameen
+       comment: "Accountant UnPrivileged User"
+       uid: 2002
+       group: office
+       shell: /bin/bash
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa
+
+   - name: Add user "zulqar" to remote server
+     user:
+       name: zulqar
+       comment: "Content creator UnPrivileged User"
+       uid: 2003
+       group: office
+       shell: /bin/bash
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa
+
+   - name: Add user "minyx" to remote server
+     user:
+       name: minyx
+       comment: "Unix Admin Privileged User"
+       uid: 2004
+       group: admin
+       groups: admin,users
+       append: yes
+       shell: /bin/sh
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa
+
+   - name: Add user "Guest001" to remote server
+     user:
+       name: guest001
+       comment: "Temp account"
+       uid: 2005
+       group: admin
+       shell: /bin/bash
+       createhome: no
+       password: ''
+       expires: 1525198731
+
+   - name: Force user "Guest001" to change the password
+     command:
+         chage -d 0 guest001
+
+  # - name: Remove user "Games" from remote server
+  #   user:
+  #     name: games
+  #     state: absent
+  #     remove: yes
+...
