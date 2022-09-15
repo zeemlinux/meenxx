@@ -1,6 +1,6 @@
 ---
 - name: Install base software on all
-  hosts: all
+  hosts: jenkins_devops
   gather_facts: yes
   become: yes
   tasks:
@@ -67,7 +67,7 @@
     - name: Install Jenkins
       yum:
         name:
-          - jenkins-2.346.2
+          - jenkins
         state: latest
     - name: Create directories for Jenkins
       file:
@@ -99,7 +99,7 @@
         enabled: yes
 
 - name: Agent installation
-  hosts: agents
+  hosts: devops
   become: yes
   tasks:
     - name: enable and start firewalld service
@@ -162,6 +162,6 @@
       file: 
         path: "/opt/tools"
         state: directory
-        owner: vagrant
-        group: vagrant
+        owner: devops
+        group: devops
         recurse: yes
