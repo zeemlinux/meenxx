@@ -64,12 +64,13 @@ cat /tmp/ouput_file
 
 ansible-playbook playbook.yml --extra-vars "ansible_ssh_user=root ansible_ssh_pass=password"
 
-ansible unix -m ping -k
+
+ansible nodes -m ping -k      ####### for password authentication
 
 
 ansible -m shell -a 'yum -y update' all
 
-ansible -m shell -a 'yum -y update' unix
+ansible -m shell -a 'yum -y update' nodes
 
 ansible -m ping all
 
@@ -115,13 +116,11 @@ sardpost.blogspot.com/2015/03/installing-zabbix-agent-on-centos-7.html
 
 
 ansible-playbook --syntax-check linux-upAdmin	zabbix
+
 Admin	zabbix
+
 date.yaml 
 
-
-
-
-ping
 
 
 
