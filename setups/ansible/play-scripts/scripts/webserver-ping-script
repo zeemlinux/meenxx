@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo
+
+
+ansible -m ping  ${ip}

@@ -1,0 +1,13 @@
+---
+  host: '{{ my_host }}'
+  - name: Copy rpm file to server
+    copy:
+     src: /root/checkmk-agents/check-mk-agent-.noarch.rpm
+     dest: /tmp/package.rpm
+
+  - name: Install package.
+    yum:
+     name: /tmp/package.rpm
+     state: present
+~
+
