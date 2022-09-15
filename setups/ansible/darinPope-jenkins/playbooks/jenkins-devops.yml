@@ -1,17 +1,9 @@
 ---
 - name: Install base software on all
-  hosts: jenkins_devops
+  hosts: all
   gather_facts: yes
   become: yes
   tasks:
-    - name: update hosts
-      lineinfile:
-        path: "/etc/hosts"
-        regexp: ".*\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
-        line: "{{ hostvars[item]['ansible_ssh_host'] }}\t{{ hostvars[item]['ansible_hostname']}}\t{{ hostvars[item]['ansible_hostname']}}"
-        state: present
-        backup: yes
-      with_items: "{{ ansible_play_batch }}"       
     - name: Adoptium yum repository
       yum_repository:
         name: Adoptium
@@ -42,7 +34,7 @@
         state: latest
       
 - name: Jenkins installation
-  hosts: jenkins_controllers
+  hosts: all
   become: yes
   tasks:
     - name: enable and start firewalld service
@@ -148,7 +140,7 @@
         state: present
     - name: add $USER to docker group
       user: 
-        name: "{{ ansible_user }}"
+        name: docker
         groups: docker
         append: yes
     - name: do a ssh reset in order to reflect the $USER group changes
