@@ -1,0 +1,48 @@
+
+
+Tools for project:
+
+Github - Version control tool
+Jenkins - CICD tool
+Sonarqube - Quality gate tool (code scanning - SAST)
+Nexus - artifact repo tool
+Harbor - docker registry
+Dev environment - deploy to dev server 
+Qa enironment -  deploy to QA server 
+Prod environment - deploy to prod server
+
+
+How student can handle this projects by priority:
+
+Create a cicd architecture diagram for the pipeline, follow these stages: Build --> Archive artifacts --> push artifacts --> quality gate --> docker build --> docker tag & push --> prod deploy
+
+Needs:
+	Write an ansible playbook that install docker and docker-compose
+	Ansible playbook that creates service account on all servers
+
+Setting up Jenkins:
+	Create a centos server
+	Install Jenkins on the server
+	Create a jenkins admin account for managing jenkins server
+
+Seting up sonarqube and nexus:
+	Create a server for setting up these tools
+	Add an extra 10GB ebs volume to the server
+	Create a logical volume using the ebs volume and run your docker-compose inside the volume directory
+	Run these two tools using a docker-compose file
+
+Setting up Harbor:
+	Create a server for harbor
+	Run harbor on a docker-compose
+
+Integration:
+	Integrate all these tools to jenkins
+
+Setting up prod server:
+	Create a prod server
+	Install necessary tools thinking we're deploying  docker image to this server
+
+Set up pipeline:
+	Create a cicd pipeline for your application development
+	Pipeline must reference the stages you have on the architectural diagram
+

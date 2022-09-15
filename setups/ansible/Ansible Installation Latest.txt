@@ -1,0 +1,16 @@
+*********************************************Ansible installation using Pip3*************************************************
+
+
+Installing Python Package Manager PIP (PIP3)
+
+
+yum -y install git, gcc gcc-c++ nodejs gettext device-mapper-persistent-data lvm2 bzip2 python3-pip python-docker wget vim python3-devel
+
+
+yum groupinstall "Development Tools"
+
+
+pip3 install --upgrade pip setuptools
+
+references:
+

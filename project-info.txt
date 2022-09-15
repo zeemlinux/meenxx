@@ -1,0 +1,59 @@
+********************************** Pet-clinic *****************************************
+
+
+Github : zeemlinux { pet-clinic }
+
+
+
+
+jenkins: 
+
+
+sonarqube:
+
+
+nexus:
+
+
+harbor:
+
+
+dev: 
+
+Qa:
+
+
+prod:
+
+
+
+
+
+
+
+
+hostnamectl set-hostname ansible.zeeminah.com 
+
+sshpass -f password.txt ssh-copy-id user@yourserver
+
+
+
+
+for server in `cat server.txt`;  
+do  
+    sshpass -p "password" ssh-copy-id -i ~/.ssh/id_rsa.pub user@$server  
+done
+
+
+
+
+sudo sed -i 's/enforcing/disabled/g' /etc/selinux/config /etc/selinux/config
+
+sudo sestatus
+
+
+yum install https://packages.endpointdev.com/rhel/7/os/x86_64/endpoint-repo.x86_64.rpm
+
+yum install endpoint-repo
+
+
